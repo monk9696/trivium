@@ -12,7 +12,7 @@ dataInitialization:
 	# To be redone for better allocaiton of the key and IV
 	addi $t0, $zero, 0
 	addi $t1, $zero, 4
-	addi $t2, $zero, 8
+	addi $t2, $zero, 255
 	sb  $t2, IV($t0)	
 	sw $t1, state($t0)
 	sb $t1, key($t0)
@@ -83,8 +83,98 @@ mainContinuation:
 
 bitwiseOperations:
 	#For calculating the new bits added to the front of their respective sections
-	#
+#t1
+	
+	addi $t4, $s0, 0
+	sll $t4, $t4, 11
+	srl $t4, $t4, 31
+	
+	
+	addi $t5, $s0, 0
+	sll $t5, $t5, 2
+	srl $t5, $t5, 31
+	
+	addi $t6, $s0, 0
+	sll $t6, $t6, 1
+	srl $t6, $t6, 31
+	
+	addi $t7, $s0, 0
+	srl $t7, $t7, 31
 
+	addi $t8, $s1, 0
+	sll $t8, $t8, 8
+	srl $t8, $t8, 31
+	
+	
+#BitwiseOps for T1
+	
+#t2	
+
+#clear
+	addi $t4, $zero, 0
+	addi $t5, $zero, 0
+	addi $t6, $zero, 0
+	addi $t7, $zero, 0
+	addi $t8, $zero, 0
+	addi $t9, $zero, 0
+	
+
+	addi $t4, $s1, 0
+	sll $t4, $t4, 11
+	srl $t4, $t4, 31
+	
+	
+	addi $t5, $s1, 0
+	sll $t5, $t5, 2
+	srl $t5, $t5, 31
+	
+	addi $t6, $s1, 0
+	sll $t6, $t6, 1
+	srl $t6, $t6, 31
+	
+	addi $t7, $s1, 0
+	srl $t7, $t7, 31
+
+	addi $t8, $s2, 0
+	sll $t8, $t8, 8
+	srl $t8, $t8, 31
+	
+	j Exit
+#BitwiseOps for T2
+
+
+#T3
+	
+#clear
+	addi $t4, $zero, 0
+	addi $t5, $zero, 0
+	addi $t6, $zero, 0
+	addi $t7, $zero, 0
+	addi $t8, $zero, 0
+	addi $t9, $zero, 0
+	
+
+	addi $t4, $s2, 0
+	sll $t4, $t4, 11
+	srl $t4, $t4, 31
+	
+	
+	addi $t5, $s2, 0
+	sll $t5, $t5, 2
+	srl $t5, $t5, 31
+	
+	addi $t6, $s2, 0
+	sll $t6, $t6, 1
+	srl $t6, $t6, 31
+	
+	addi $t7, $s2, 0
+	srl $t7, $t7, 31
+
+	addi $t8, $s0, 0
+	sll $t8, $t8, 8
+	srl $t8, $t8, 31
+	j Exit
+#Bitwise Ops for T3
 
 BitwiseShift:
 	#For doing the bit shift for the cycling and adding the values calculated in bitwiseOperations to the registers
